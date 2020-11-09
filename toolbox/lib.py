@@ -78,9 +78,8 @@ def send_newsletter(*args, **kwargs):
     phone = pd.read_csv("./toolbox/data/phone_number.txt")
     print(phone)
     phone_book = phone.to_dict()
-    # phone_book = {
-    #     "Thierry":"+33652546065"
-    # }
+
+
     #print(f"{phone_book}")
     print(f"Are you sure you want to send the newsletter to subscribers ? (y/n)")
 
