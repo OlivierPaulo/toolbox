@@ -19,9 +19,10 @@ def send_sms(*args, **kwargs):
         #for k, v in kwargs.items():
             #print(f' => {k}: {v}')
         number = str(kwargs['number'])
-        if number[0] != "+":
-            number = "+"+number
-        message = str(kwargs['message'])
+
+        person = str(kwargs['person'])
+
+        message = f"""Dear {person}, thanks for subscribing in Fed Up! Our platform will be live very soon. Stay tuned !"""
         path = f"?number={number}&message={message}"
 
         BASE_URI = f"https://hook.integromat.com/kg9mm79dgr5pp7m2d5w2nwch18kwrqic"
@@ -57,21 +58,31 @@ def send_newsletter(*args, **kwargs):
     print("############# Fed Up Newsletter ##############")
     print("##############################################")
     phone = pd.read_csv("data/phone_number.txt")
-
+    print(f"{phone}")
     phone_book = phone.to_dict()
-    for person, number in phone_book.items():
+    print(f"{phone_book}")
+    print(f"Are you sure you want to send the newsletter to subscribers ? y/n")
 
-        message = f"""Dear {person}, thanks for subscribing in Fed Up! Our platform will be live very soon. Stay tuned !"""
-        path = f"?number={number}&message={message}"
+    confirmation = str(input()).lower()
 
-        BASE_URI = f"https://hook.integromat.com/kg9mm79dgr5pp7m2d5w2nwch18kwrqic"
+    if confirmation == "y":
 
-        #req = requests.get(BASE_URI+path).json()
-        req = ""
-        print(f"Sending SMS to {person}...")
-        time.sleep(0.2)
+        for person, number in phone_book.items():
 
-    print("Newsletter sent to subscribers !")
+            message = f"""Dear {person}, thanks for subscribing in Fed Up! Our platform will be live very soon. Stay tuned !"""
+            path = f"?number={number}&message={message}"
+
+            BASE_URI = f"https://hook.integromat.com/kg9mm79dgr5pp7m2d5w2nwch18kwrqic"
+
+            req = requests.get(BASE_URI+path).json()
+
+            print(f"Sending SMS to {person}...")
+            time.sleep(0.2)
+
+    if confirmation == "y":
+        print("Newsletter sent to subscribers !")
+    else:
+        req = "Not send"
     return req
 
 
