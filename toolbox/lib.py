@@ -51,7 +51,7 @@ def send_sms(*args, **kwargs):
         #print(req)
         return req
 
-def send_newsletter():
+def send_newsletter(*args, **kwargs):
 
     print("##############################################")
     print("############# Fed Up Newsletter ##############")
