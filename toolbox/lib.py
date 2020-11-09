@@ -15,8 +15,8 @@ import time
 
 pd.set_option('display.width', 200)
 
-def get_input():
-    return input()
+def dummy_test():
+    return "OK"
 
 
 def send_sms(*args, **kwargs):
