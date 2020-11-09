@@ -1,4 +1,5 @@
-# -*- coding: UTF-8 -*-
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 # Copyright (C) 2018 Jean Bizot <jean@styckr.io>
 """ Main lib for toolbox Project
 """
