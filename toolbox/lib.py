@@ -16,8 +16,10 @@ def send_sms(*args, **kwargs):
         #print("Keyword arguments:")
         #for k, v in kwargs.items():
             #print(f' => {k}: {v}')
-        number = kwargs['number']
-        message = kwargs['message']
+        number = str(kwargs['number'])
+        if number[0] != "+":
+            number = "+"+number
+        message = str(kwargs['message'])
         path = f"?number={number}&message={message}"
 
         BASE_URI = f"https://hook.integromat.com/kg9mm79dgr5pp7m2d5w2nwch18kwrqic"
@@ -33,6 +35,8 @@ def send_sms(*args, **kwargs):
         print("##############################################")
         print("Please provide your phone number : ?")
         number = str(input())
+        if number[0] != "+":
+            number = "+"+number
         print("Please provide your message : ?")
         message = str(input())
 
