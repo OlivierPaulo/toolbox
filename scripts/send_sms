@@ -4,12 +4,10 @@
 # Import from the standard library
 from os.path import split
 import argparse
-from toolbox.lib import send_sms
-
-
 # Import from toolbox
 import toolbox
-from toolbox.lib import clean_data
+from toolbox.lib import send_sms
+
 
 if __name__ == '__main__':
     usage = '%(prog)s'
@@ -18,4 +16,4 @@ if __name__ == '__main__':
     # https://docs.python.org/3/howto/argparse.html
     parser = argparse.ArgumentParser(description=description, usage=usage)
     args = parser.parse_args()
-    send_sms()
+    print(send_sms())
