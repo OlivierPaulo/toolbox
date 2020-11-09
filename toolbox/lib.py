@@ -6,6 +6,7 @@
 from os.path import split
 import pandas as pd
 import datetime
+import requests
 
 pd.set_option('display.width', 200)
 
@@ -47,6 +48,36 @@ def clean_data(data):
     data.loc[:, 'Frequency'] = data['Frequency'].map(drows)
     return data
 
+
+def send_sms(*args, **kwargs):
+
+    if kwargs:
+        #print("Keyword arguments:")
+        #for k, v in kwargs.items():
+            #print(f' => {k}: {v}')
+        number = kwargs['number']
+        message = kwargs['message']
+        path = f"?number={number}&message={message}"
+        BASE_URI = f"https://hook.integromat.com/kg9mm79dgr5pp7m2d5w2nwch18kwrqic{path}"
+        req = requests.get(BASE_URI+path).json()
+        return req
+    else:
+        print("Please provide your phone number : ?\n")
+        number = str(input())
+        print("Please provide your message : ?\n")
+        message = str(input())
+
+        path = f"?number={number}&message={message}"
+        BASE_URI = f"https://hook.integromat.com/kg9mm79dgr5pp7m2d5w2nwch18kwrqic{path}"
+        req = requests.get(BASE_URI+path).json()
+        return req
+
+
+def daily_forecast(woeid, year, month, day):
+    path = f"/api/location/{woeid}/{year}/{month}/{day}"
+    response = requests.get(BASE_URI+path).json()
+    #print(response)
+    return response
 
 if __name__ == '__main__':
     # For introspections purpose to quickly get this functions on ipython
