@@ -65,6 +65,6 @@ Functionnal test with a script:
 
 # Continus integration
 ## Github 
-Every push of `master` branch will execute `.github/workflows/pythonpackages.yml` docker jobs.
+Every push of `master` branch will execute `.github/workflows/pythonpackages.yml` docker jobs
 ## Gitlab
-Every push of `master` branch will execute `.gitlab-ci.yml` docker jobs.
+Every push of `master` branch will execute `.gitlab-ci.yml` docker jobs
